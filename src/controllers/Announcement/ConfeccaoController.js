@@ -6,20 +6,20 @@ module.exports = {
     return res.json(confeccoes)
   },
   async indexType(req, res) {
-    const confeccoes = await Confeccao.find({ adsTipo: req.params.adsTipo })
+    const confeccoes = await Confeccao.findOne({ adsTipo: req.params.adsTipo })
     return res.json(confeccoes)
   },
   async indexFrom(req, res) {
-    const confeccoes = await Confeccao.find({ userId: req.params.userId })
+    const confeccoes = await Confeccao.findOne({ userId: req.params.userId })
     return res.json(confeccoes)
   },
   async indexTypeFrom(req, res) {
-    const confeccoes = await Confeccao.find({ userId: req.params.userId, adsTipo: req.params.adsTipo })
+    const confeccoes = await Confeccao.findOne({ userId: req.params.userId, adsTipo: req.params.adsTipo })
     return res.json(confeccoes)
   },
   
   async detail(req, res) {
-    const confeccao = await Confeccao.find({_id: req.params.id})
+    const confeccao = await Confeccao.findOne({_id: req.params.id})
     return res.json(confeccao)
   },
   async store(req, res) {
@@ -27,11 +27,11 @@ module.exports = {
     return res.json(confeccao)
   },
   async update(req, res) {
-    const confeccao = await Confeccao.findOneAndUpdate(req.params.id, req.body, { new: true })
+    const confeccao = await Confeccao.findOneAndUpdate({_id: req.params.id}, req.body, { new: true })
     return res.json(confeccao)
   },
   async destroy(req, res) {
-    await Confeccao.findOneAndRemove(req.params.id)
+    await Confeccao.findOneAndRemove({_id: req.params.id})
     return res.send()
   }
 }

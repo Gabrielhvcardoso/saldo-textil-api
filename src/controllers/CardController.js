@@ -10,11 +10,11 @@ module.exports = {
     return res.json(card)
   },
   async update(req, res) {
-    const card = await Card.findOneAndUpdate(req.params.id, req.body, { new: true })
+    const card = await Card.findOneAndUpdate({_id: req.params.id}, req.body, { new: true })
     return res.json(card)
   },
   async destroy(req, res) {
-    await Card.findOneAndRemove(req.params.id)
+    await Card.findOneAndRemove({_id: req.params.id})
     return res.send()
   }
 }

@@ -6,7 +6,7 @@ module.exports = {
     return res.json(users)
   },
   async detail(req, res) {
-    const user = await User.find({_id: req.params.id})
+    const user = await User.findOne({_id: req.params.id})
     return res.json(user)
   },
   async login(req, res) {
@@ -18,11 +18,11 @@ module.exports = {
     return res.json(user)
   },
   async update(req, res) {
-    const user = await User.findOneAndUpdate(req.params.id, req.body, { new: true })
+    const user = await User.findOneAndUpdate({_id: req.params.id}, req.body, { new: true })
     return res.json(user)
   },
   async destroy(req, res) {
-    await User.findOneAndRemove(req.params.id)
+    await User.findOneAndRemove({_id: req.params.id})
     return res.send()
   }
 }
