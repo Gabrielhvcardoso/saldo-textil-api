@@ -23,9 +23,9 @@ routes.delete('card:id', CardController.destroy )
 
 // Confecção
 routes.get('/confeccao', ConfeccaoController.index)
-routes.get('/confeccao/:tipo', ConfeccaoController.indexType)
+routes.get('/confeccao/:adsTipo', ConfeccaoController.indexType)
 routes.get('/confeccao/:userId', ConfeccaoController.indexFrom)
-routes.get('/confeccao/:tipo/:userId', ConfeccaoController.indexTypeFrom)
+routes.get('/confeccao/:adsTipo/:userId', ConfeccaoController.indexTypeFrom)
 routes.get('/confeccao/:id', ConfeccaoController.detail)
 routes.post('/confeccao', ConfeccaoController.store)
 routes.put('/confeccao/:id', ConfeccaoController.update)
@@ -33,9 +33,9 @@ routes.delete('/confeccao/:id', ConfeccaoController.destroy)
 
 // Malha
 routes.get('/malha', MalhaController.index)
-routes.get('/malha/:tipo', MalhaController.indexType)
+routes.get('/malha/:adsTipo', MalhaController.indexType)
 routes.get('/malha/:userId', MalhaController.indexFrom)
-routes.get('/malha/:tipo/userId', MalhaController.indexTypeFrom)
+routes.get('/malha/:adsTipo/userId', MalhaController.indexTypeFrom)
 routes.get('/malha/:id', MalhaController.detail)
 routes.post('/malha', MalhaController.store)
 routes.put('/malha/:id', MalhaController.update)
