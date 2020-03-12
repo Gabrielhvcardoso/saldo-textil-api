@@ -6,15 +6,15 @@ module.exports = {
     return res.json(confeccoes)
   },
   async indexType(req, res) {
-    const confeccoes = await Confeccao.find({ adsTipo: req.body.adsTipo })
+    const confeccoes = await Confeccao.find({ adsTipo: req.params.adsTipo })
     return res.json(confeccoes)
   },
   async indexFrom(req, res) {
-    const confeccoes = await Confeccao.find({ userId: req.body.userId })
+    const confeccoes = await Confeccao.find({ userId: req.params.userId })
     return res.json(confeccoes)
   },
   async indexTypeFrom(req, res) {
-    const confeccoes = await Confeccao.find({ userId: req.body.userId, adsTipo: req.body.adsTipo })
+    const confeccoes = await Confeccao.find({ userId: req.params.userId, adsTipo: req.params.adsTipo })
     return res.json(confeccoes)
   },
   

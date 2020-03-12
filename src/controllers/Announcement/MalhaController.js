@@ -6,15 +6,15 @@ module.exports = {
     return res.json(malhas)
   },
   async indexType(req, res) {
-    const malhas = await Malha.find({ adsTipo: req.body.adsTipo })
+    const malhas = await Malha.find({ adsTipo: req.params.adsTipo })
     return res.json(malhas)
   },
   async indexFrom(req, res) {
-    const malhas = await Malha.find({ userId: req.body.userId })
+    const malhas = await Malha.find({ userId: req.params.userId })
     return res.json(malhas)
   },
   async indexTypeFrom(req, res) {
-    const malhas = await Malha.find({ userId: req.body.userId, adsTipo: req.body.adsTipo })
+    const malhas = await Malha.find({ userId: req.params.userId, adsTipo: req.params.adsTipo })
     return res.json(malhas)
   },
   
