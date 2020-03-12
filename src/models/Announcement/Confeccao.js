@@ -2,6 +2,11 @@ const mongoose = require('mongoose')
 
 const ConfeccaoSchema = new mongoose.Schema({
   titulo: String,
+  publico: String,
+  quantidade: String,
+  // Peças, Kr, Metros
+  medida: String,
+  preco: Number,
   userId: String,
   adsTipo: String,
   categoria: String,
