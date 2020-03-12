@@ -19,7 +19,7 @@ module.exports = {
   },
   
   async detail(req, res) {
-    const confeccao = await Confeccao.findOne({_id: req.params.id})
+    const confeccao = await Confeccao.findById(req.params.id)
     return res.json(confeccao)
   },
   async store(req, res) {

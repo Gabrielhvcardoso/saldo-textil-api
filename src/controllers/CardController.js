@@ -2,7 +2,7 @@ const Card = require('../models/Card')
 
 module.exports = {
   async detail(req, res) {
-    const card = await Card.find({_id: req.params.id})
+    const card = await Card.findById(req.params.id)
     return res.json(card)
   },
   async store(req, res) {
