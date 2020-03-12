@@ -19,7 +19,7 @@ module.exports = {
   },
   
   async detail(req, res) {
-    const malha = await Malha.findOne({_id: req.params.id})
+    const malha = await Malha.find({_id: req.params.id})
     return res.json(malha)
   },
   async store(req, res) {

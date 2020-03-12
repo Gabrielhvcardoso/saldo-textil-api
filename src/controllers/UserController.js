@@ -6,7 +6,7 @@ module.exports = {
     return res.json(users)
   },
   async detail(req, res) {
-    const user = await User.findOne({_id: req.params.id})
+    const user = await User.find({_id: req.params.id})
     return res.json(user)
   },
   async login(req, res) {
