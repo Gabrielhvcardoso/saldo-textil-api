@@ -18,6 +18,7 @@ const MalhaSchema = new mongoose.Schema({
   gramatura: String,
   cores: String,
   tipoDeProduto: String,
+  image: String,
   
   createdAt: {
     type: Date,

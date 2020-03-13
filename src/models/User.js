@@ -31,6 +31,7 @@ const UserSchema = new mongoose.Schema({
   numero: String,
   cidade: String,
   UF: String,
+  image: String,
   createdAt: {
     type: Date,
     default: Date.now()

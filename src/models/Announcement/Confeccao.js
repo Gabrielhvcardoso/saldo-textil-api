@@ -13,6 +13,7 @@ const ConfeccaoSchema = new mongoose.Schema({
   subcategoria: String,
   tamanho: String,
   cor: String,
+  image: String,
   
   createdAt: {
     type: Date,
