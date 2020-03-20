@@ -1,0 +1,18 @@
+const User = require('../models/User')
+const Confeccao = require('../models/Announcement/Confeccao')
+const Malha = require('../models/Announcement/Malha')
+
+module.exports = {
+  async indexU(req, res) {
+    const users = await User.find({ name: { $regex: new RegExp(req.params.search), $options: 'i' } })
+    return res.json(users)
+  },
+  async indexC(req, res) {
+    const confeccoes = await Confeccao.find({ titulo: { $regex: new RegExp(req.params.search), $options: 'i' } })
+    return res.json(confeccoes)
+  },
+  async indexM(req, res) {
+    const malhas = await Malha.find({ titulo: { $regex: new RegExp(req.params.search), $options: 'i' } })
+    return res.json(malhas)
+  }
+}

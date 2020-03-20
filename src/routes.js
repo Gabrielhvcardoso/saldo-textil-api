@@ -2,10 +2,18 @@ const { Router }= require('express')
 const routes = Router()
 
 // Controllers
+const SearchController = require('./controllers/SearchController')
 const UserController = require('./controllers/UserController')
 const CardController = require('./controllers/CardController')
 const ConfeccaoController = require('./controllers/Announcement/ConfeccaoController')
 const MalhaController = require('./controllers/Announcement/MalhaController')
+
+
+
+// Search
+routes.get('/user/search/:search', SearchController.indexU)
+routes.get('/confeccao/search/:search', SearchController.indexC)
+routes.get('/malha/search/:search', SearchController.indexM)
 
 // Usuário
 routes.get('/user', UserController.index )
