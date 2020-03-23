@@ -5,6 +5,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  nameFic: String,
   cep: {
     type: String,
     required: true
@@ -25,6 +26,11 @@ const UserSchema = new mongoose.Schema({
   tipo: {
     type: String,
     required: true
+  },
+  cpfCnpj: String,
+  premium: {
+    type: Boolean, 
+    default: false
   },
   endereco: String,
   bairro: String,
