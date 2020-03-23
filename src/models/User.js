@@ -27,6 +27,9 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  categoria: {
+    type: String
+  },
   cpfCnpj: String,
   premium: {
     type: Boolean, 
