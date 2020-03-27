@@ -6,7 +6,7 @@ const OutroSchema = new mongoose.Schema({
   userId: String,
   adsTipo: String,
   descricao: String,
-  preco: Float32Array,
+  preco: Number,
   createdAt: {
     type: Date,
     default: Date.now()
