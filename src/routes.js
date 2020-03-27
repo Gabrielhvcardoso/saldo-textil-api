@@ -7,7 +7,7 @@ const UserController = require('./controllers/UserController')
 const CardController = require('./controllers/CardController')
 const ConfeccaoController = require('./controllers/Announcement/ConfeccaoController')
 const MalhaController = require('./controllers/Announcement/MalhaController')
-
+const OutrosController = require('./controllers/Announcement/OutrosController')
 
 
 // Search
@@ -48,5 +48,15 @@ routes.get('/malha/detail/:id', MalhaController.detail)
 routes.post('/malha', MalhaController.store)
 routes.put('/malha/:id', MalhaController.update)
 routes.delete('/malha/:id', MalhaController.destroy)
+
+// Outros
+routes.get('/outros', OutrosController.index)
+routes.get('/outros/:adsTipo', OutrosController.indexType)
+routes.get('/outros/:userId', OutrosController.indexFrom)
+routes.get('/outros/:adsTipo/userId', OutrosController.indexTypeFrom)
+routes.get('/outros/detail/:id', OutrosController.detail)
+routes.post('/outros', OutrosController.store)
+routes.put('/outros/:id', OutrosController.update)
+routes.delete('/outros/:id', OutrosController.destroy)
 
 module.exports = routes

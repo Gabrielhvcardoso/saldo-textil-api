@@ -6,7 +6,7 @@ const MalhaSchema = new mongoose.Schema({
   quantidade: String,
   // Peças, Kr, Metros
   medida: String,
-  preco: Number,
+  preco: Float32Array,
   userId: String,
   adsTipo: String,
   artigo: String,
