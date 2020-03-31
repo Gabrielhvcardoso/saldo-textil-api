@@ -36,6 +36,6 @@ module.exports = {
     const confeccoes = await Confeccao.find({ adsTipo: req.params.type, userId: req.params.id })
     const malhas = await Malha.find({ adsTipo: req.params.type, userId: req.params.id })
     const outros = await Outro.find({ adsTipo: req.params.type, userId: req.params.id })
-    return res.json({...outros, ...malhas, ...confeccoes})
+    return res.json({outros, malhas, confeccoes})
   }
 }
