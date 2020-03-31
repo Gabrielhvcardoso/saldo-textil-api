@@ -16,6 +16,8 @@ routes.get('/confeccao/search/:search', SearchController.indexC)
 routes.get('/confeccao/search/type/:type/:search', SearchController.indexTypeC)
 routes.get('/malha/search/:search', SearchController.indexM)
 routes.get('/malha/search/type/:type/:search', SearchController.indexTypeM)
+routes.get('/outros/search/:search', SearchController.indexO)
+routes.get('/outros/search/type/:type/:search', SearchController.indexTypeO)
 
 // Usuário
 routes.get('/user', UserController.index )
