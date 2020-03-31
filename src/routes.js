@@ -12,8 +12,11 @@ const OutrosController = require('./controllers/Announcement/OutrosController')
 
 // Search
 routes.get('/user/search/:search', SearchController.indexU)
+routes.get('/user/search/type/:type/:search', SearchController.indexTypeU)
 routes.get('/confeccao/search/:search', SearchController.indexC)
+routes.get('/confeccao/search/type/:type/:search', SearchController.indexTypeC)
 routes.get('/malha/search/:search', SearchController.indexM)
+routes.get('/malha/search/type/:type/:search', SearchController.indexTypeM)
 
 // Usuário
 routes.get('/user', UserController.index )
