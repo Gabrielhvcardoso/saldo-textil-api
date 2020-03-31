@@ -33,9 +33,9 @@ module.exports = {
     return res.json(outros)
   },
   async indexAll(req, res) {
-    const confeccoes = await Confeccao.find({ adsTipo: req.params.type, titulo: { $regex: new RegExp(req.params.search), $options: 'i' } })
-    const malhas = await Malha.find({ adsTipo: req.params.type, titulo: { $regex: new RegExp(req.params.search), $options: 'i' } })
-    const outros = await Outro.find({ adsTipo: req.params.type, titulo: { $regex: new RegExp(req.params.search), $options: 'i' } })
+    const confeccoes = await Confeccao.find({ adsTipo: req.params.type, userId: req.params.id })
+    const malhas = await Malha.find({ adsTipo: req.params.type, userId: req.params.id })
+    const outros = await Outro.find({ adsTipo: req.params.type, userId: req.params.id })
     return res.json(outros, malhas, confeccoes)
   }
 }

@@ -19,7 +19,7 @@ routes.get('/malha/search/type/:type/:search', SearchController.indexTypeM)
 routes.get('/outros/search/:search', SearchController.indexO)
 routes.get('/outros/search/type/:type/:search', SearchController.indexTypeO)
 
-routes.get('/all/:type/', SearchController.indexAll)
+routes.get('/all/:type/:id', SearchController.indexAll)
 
 // Usuário
 routes.get('/user', UserController.index )
