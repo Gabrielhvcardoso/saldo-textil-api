@@ -31,5 +31,11 @@ module.exports = {
   async indexTypeO(req, res) {
     const outros = await Outro.find({ adsTipo: req.params.type, titulo: { $regex: new RegExp(req.params.search), $options: 'i' } })
     return res.json(outros)
+  },
+  async indexAll(req, res) {
+    const confeccoes = await Confeccao.find({ adsTipo: req.params.type, titulo: { $regex: new RegExp(req.params.search), $options: 'i' } })
+    const malhas = await Malha.find({ adsTipo: req.params.type, titulo: { $regex: new RegExp(req.params.search), $options: 'i' } })
+    const outros = await Outro.find({ adsTipo: req.params.type, titulo: { $regex: new RegExp(req.params.search), $options: 'i' } })
+    return res.json(outros, malhas, confeccoes)
   }
 }
