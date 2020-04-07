@@ -83,7 +83,7 @@ routes.delete('card:id', CardController.destroy )
   routes.get('/organizations/charity/:id', CharityOrganizationController.detail )
   routes.post('/organizations/charity', CharityOrganizationController.store )
   routes.put('/organizations/charity/:id', CharityOrganizationController.update )
-  routes.delete('/organizations/charity/:id', CharityOrganizationController.delete )
+  routes.delete('/organizations/charity/:id', CharityOrganizationController.destroy )
 
 // Situations
   // Job
@@ -91,7 +91,7 @@ routes.delete('card:id', CardController.destroy )
   routes.get('/sit/jobs/:id', JobController.detail )
   routes.post('/sit/jobs', JobController.store )
   routes.put('/sit/jobs/:id', JobController.update )
-  routes.delete('/sit/jobs/:id', JobController.delete )
+  routes.delete('/sit/jobs/:id', JobController.destroy )
 
   // Donation
   routes.get('/sit/donation', DonationController.index )
@@ -100,6 +100,6 @@ routes.delete('card:id', CardController.destroy )
   routes.get('/sit/donation/:id', DonationController.detail )
   routes.post('/sit/donation', DonationController.store )
   routes.put('/sit/donation/:id', DonationController.update )
-  routes.delete('/sit/donation/:id', DonationController.delete )
+  routes.delete('/sit/donation/:id', DonationController.destroy )
 
 module.exports = routes
