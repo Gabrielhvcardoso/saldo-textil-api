@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const JobSchema = new mongoose.Schema({
+const DonationSchema = new mongoose.Schema({
   donateBy: String,
   donateTo: String,
   status: {
@@ -13,4 +13,4 @@ const JobSchema = new mongoose.Schema({
   }
 })
 
-module.exports = mongoose.model('Job', JobSchema)
+module.exports = mongoose.model('Donation', DonationSchema)

@@ -1,4 +1,4 @@
-const Donation = require('../models/Situations/Donation')
+const Donation = require('../../models/Situations/Donation')
 
 module.exports = {
   async index(req, res) {

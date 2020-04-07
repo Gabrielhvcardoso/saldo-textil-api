@@ -1,4 +1,4 @@
-const CharityOrganization = require('../models/Organizations/CharityOrganization')
+const CharityOrganization = require('../../models/Organizations/CharityOrganization')
 
 module.exports = {
   async index(req, res) {

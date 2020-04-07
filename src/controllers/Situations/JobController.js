@@ -1,4 +1,4 @@
-const Job = require('../models/Situations/Job')
+const Job = require('../../models/Situations/Job')
 
 module.exports = {
   async index(req, res) {
