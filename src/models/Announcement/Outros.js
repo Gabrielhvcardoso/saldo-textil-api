@@ -7,6 +7,10 @@ const OutroSchema = new mongoose.Schema({
   adsTipo: String,
   descricao: String,
   preco: Number,
+  status: {
+    type: Boolean,
+    default: true
+  },
   createdAt: {
     type: Date,
     default: Date.now()

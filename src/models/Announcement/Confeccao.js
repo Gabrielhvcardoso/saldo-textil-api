@@ -14,6 +14,10 @@ const ConfeccaoSchema = new mongoose.Schema({
   tamanho: String,
   cor: String,
   image: String,
+  status: {
+    type: Boolean,
+    default: true
+  },
   
   createdAt: {
     type: Date,

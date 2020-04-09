@@ -19,6 +19,10 @@ const MalhaSchema = new mongoose.Schema({
   cores: String,
   tipoDeProduto: String,
   image: String,
+  status: {
+    type: Boolean,
+    default: true
+  },
   
   createdAt: {
     type: Date,

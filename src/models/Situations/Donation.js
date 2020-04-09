@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const DonationSchema = new mongoose.Schema({
   donateBy: String,
   donateTo: String,
+  productId: String,
   status: {
     type: Boolean,
     default: false
