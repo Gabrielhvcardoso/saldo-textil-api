@@ -1,5 +1,9 @@
 const User = require('../models/User')
 
+const Confeccao = require('../models/Announcement/Confeccao')
+const Malha = require('../models/Announcement/Malha')
+const Outros = require('../models/Announcement/Outros')
+
 module.exports = {
   async index(req, res) {
     const users = await User.find()
@@ -23,6 +27,9 @@ module.exports = {
   },
   async destroy(req, res) {
     await User.findOneAndRemove({_id: req.params.id})
+    await Confeccao.deleteMany({ userId: req.params.id })
+    await Malha.deleteMany({ userId: req.params.id })
+    await Outros.deleteMany({ userId: req.params.id })
     return res.send()
   }
 }
