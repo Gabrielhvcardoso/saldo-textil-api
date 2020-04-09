@@ -48,6 +48,7 @@ module.exports = {
   // Organizations - Charity
   async indexOC(req, res) {
     const charityOrganizations = await Charity.find({ organizationName: { $regex: new RegExp(req.params.search), $options: 'i' } })
+    return res.json(charityOrganizations)
   },
 
   // Situations - Job
