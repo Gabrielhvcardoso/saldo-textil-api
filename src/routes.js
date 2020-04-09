@@ -79,6 +79,8 @@ routes.delete('card:id', CardController.destroy )
 
 // Organizations
   // Charity Organization
+  routes.get('/search/organizations/charity', SearchController.indexOC )
+  
   routes.get('/organizations/charity', CharityOrganizationController.index )
   routes.get('/organizations/charity/:id', CharityOrganizationController.detail )
   routes.post('/organizations/charity', CharityOrganizationController.store )
@@ -87,6 +89,8 @@ routes.delete('card:id', CardController.destroy )
 
 // Situations
   // Job
+  routes.get('/search/sit/jobs', SearchController.indexJ )
+
   routes.get('/sit/jobs', JobController.index )
   routes.get('/sit/jobs/:id', JobController.detail )
   routes.post('/sit/jobs', JobController.store )
