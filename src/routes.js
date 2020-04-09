@@ -18,9 +18,6 @@ const CharityOrganizationController = require('./controllers/Organization/Charit
 const JobController = require('./controllers/Situations/JobController')
 const DonationController = require('./controllers/Situations/DonationController')
 
-// Search
-routes.get('/all/:type/:id', SearchController.indexAll)
-
 // Usuário
 routes.get('/user/search/:search', SearchController.indexU)
 
