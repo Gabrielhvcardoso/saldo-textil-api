@@ -4,10 +4,10 @@ const Schema = mongoose.Schema
 const OutroSchema = new mongoose.Schema({
   titulo: String,
   categoria: String,
-  userId: String,
-  adsTipo: {
+  userId: {
     type: Schema.Types.ObjectId, ref: 'User'
   },
+  adsTipo: String,
   descricao: String,
   preco: Number,
   status: {
