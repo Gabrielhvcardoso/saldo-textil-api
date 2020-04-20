@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const ConfeccaoSchema = new mongoose.Schema({
   titulo: String,
@@ -7,7 +8,9 @@ const ConfeccaoSchema = new mongoose.Schema({
   // Peças, Kr, Metros
   medida: String,
   preco: Number,
-  userId: String,
+  userId: {
+    type: Schema.Types.ObjectId, ref: 'User'
+  },
   adsTipo: String,
   categoria: String,
   subcategoria: String,

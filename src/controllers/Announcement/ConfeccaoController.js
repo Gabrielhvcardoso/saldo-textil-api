@@ -3,23 +3,33 @@ const Confeccao = require('../../models/Announcement/Confeccao')
 module.exports = {
   async index(req, res) {
     const confeccoes = await Confeccao.find()
+                                      .populate('userId')
+                                      .exec()
     return res.json(confeccoes)
   },
   async indexType(req, res) {
     const confeccoes = await Confeccao.find({ adsTipo: req.params.adsTipo })
+                                      .populate('userId')
+                                      .exec()
     return res.json(confeccoes)
   },
   async indexFrom(req, res) {
     const confeccoes = await Confeccao.find({ userId: req.params.userId })
+                                      .populate('userId')
+                                      .exec()
     return res.json(confeccoes)
   },
   async indexTypeFrom(req, res) {
     const confeccoes = await Confeccao.find({ userId: req.params.userId, adsTipo: req.params.adsTipo })
+                                      .populate('userId')
+                                      .exec()
     return res.json(confeccoes)
   },
   
   async detail(req, res) {
     const confeccao = await Confeccao.findById(req.params.id)
+                                     .populate('userId')
+                                     .exec()
     return res.json(confeccao)
   },
   async store(req, res) {

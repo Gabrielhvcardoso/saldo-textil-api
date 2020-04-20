@@ -3,10 +3,15 @@ const CharityOrganization = require('../../models/Organizations/CharityOrganizat
 module.exports = {
   async index(req, res) {
     const organizations = await CharityOrganization.find()
+                                                   .populate('ownerId')
+                                                   .exec()
     return res.json(organizations)
   },
   async detail(req, res) {
     const organization = await CharityOrganization.findById(req.params.id)
+                                                  .populate('ownerId')
+                                                  .exec()
+    
     return res.json(organization)
   },
   async store(req, res) {

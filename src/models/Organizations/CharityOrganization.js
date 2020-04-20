@@ -1,8 +1,13 @@
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const CharityOrganizationSchema = new mongoose.Schema({
-  ownerId: String,
-  allowedIds: String,
+  ownerId: {
+    type: Schema.Types.ObjectId, ref: 'User'
+  },
+  allowedIds: [{
+    type: Schema.Types.ObjectId, ref: 'User'
+  }],
   organizationName: {
     type: String,
     required: true
