@@ -35,6 +35,8 @@ const UserSchema = new mongoose.Schema({
     type: Boolean, 
     default: false
   },
+  profileImage: String,
+  website: String,
   endereco: String,
   bairro: String,
   numero: String,
