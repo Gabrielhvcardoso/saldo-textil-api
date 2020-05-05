@@ -15,6 +15,7 @@ const OutrosController = require('./controllers/Announcement/OutrosController')
 const CharityOrganizationController = require('./controllers/Organization/CharityOrganizationController')
 
 // Situations
+const AgentController = require('./controllers/Situations/AgentController')
 const JobController = require('./controllers/Situations/JobController')
 const DonationController = require('./controllers/Situations/DonationController')
 
@@ -85,6 +86,11 @@ routes.delete('card:id', CardController.destroy )
   routes.delete('/organizations/charity/:id', CharityOrganizationController.destroy )
 
 // Situations
+  // Agents
+  routes.get('/sit/agents', AgentController.index )
+  routes.post('/sit/agents', AgentController.store )
+  routes.put('/sit/agents/:id', AgentController.update )
+  routes.delete('/sit/agents/:id', AgentController.destroy )
   // Job
   routes.get('/search/sit/jobs/:search', SearchController.indexJ )
 
