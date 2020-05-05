@@ -5,6 +5,10 @@ module.exports = {
     const agents = await Agents.find().populate('user').exec()
     return res.json(agents)
   },
+  async searchProducts(req, res) {
+    const agents = await Agents.find({ "products.name": { $regex: new RegExp(req.params.search), $options: 'i' } }).populate('user').exec()
+    return res.json(agents)
+  },
   async store(req, res) {
     const agent = await Agents.create(req.body)
     return res.json(agent)

@@ -88,6 +88,7 @@ routes.delete('card:id', CardController.destroy )
 // Situations
   // Agents
   routes.get('/sit/agents', AgentController.index )
+  routes.get('/sit/agents/:search', AgentController.searchProducts )
   routes.post('/sit/agents', AgentController.store )
   routes.put('/sit/agents/:id', AgentController.update )
   routes.delete('/sit/agents/:id', AgentController.destroy )
