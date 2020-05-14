@@ -29,7 +29,19 @@ module.exports = {
     // Index from announcement type
     if( req.body.adsTipo && !req.body.userId && !req.body.uf ) {
       const malhas = await Malha.find({ adsTipo: req.body.adsTipo }).populate('userId').exec()
-      return res.json(malhas)
+      
+      function removeNullResults(array) {
+        var result = array.filter(function(el) {
+          return el.userId === null;
+        });
+        for(var elemento of result) {
+          var index = array.indexOf(elemento);
+          array.splice(index, 1);
+        };
+        return array;
+      }
+      
+      return res.json(removeNullResults(malhas));
     } 
     // Index from user Id
     else if ( !req.body.adsTipo && req.body.userId && !req.body.uf) {
@@ -37,7 +49,19 @@ module.exports = {
         path: 'userId',
         match: { _id: req.body.userId }
       }).exec()
-      return res.json(malhas)
+
+      function removeNullResults(array) {
+        var result = array.filter(function(el) {
+          return el.userId === null;
+        });
+        for(var elemento of result) {
+          var index = array.indexOf(elemento);
+          array.splice(index, 1);
+        };
+        return array;
+      }
+      
+      return res.json(removeNullResults(malhas));
     } 
     // Index from announcement type and userId
     else if ( req.body.adsTipo && req.body.userId && !req.body.uf ) {
@@ -45,15 +69,39 @@ module.exports = {
         path: 'userId',
         match: { _id: req.body.userId }
       }).exec()
-      return res.json(malhas)
+
+      function removeNullResults(array) {
+        var result = array.filter(function(el) {
+          return el.userId === null;
+        });
+        for(var elemento of result) {
+          var index = array.indexOf(elemento);
+          array.splice(index, 1);
+        };
+        return array;
+      }
+      
+      return res.json(removeNullResults(malhas));
     }
     // Index from announcement type and uf    
     else if ( req.body.adsTipo && !req.body.userId && req.body.uf ) {
-      const malhas = await Malha.find({ adsTipo: req.body.adsTipo }).populate({
+      const malhas = await Malha.find({ adsTipo: req.body.adsTipo, }).populate({
         path: 'userId',
         match: { UF: req.body.uf }
       }).exec()
-      return res.json(malhas)
+
+      function removeNullResults(array) {
+        var result = array.filter(function(el) {
+          return el.userId === null;
+        });
+        for(var elemento of result) {
+          var index = array.indexOf(elemento);
+          array.splice(index, 1);
+        };
+        return array;
+      }
+      
+      return res.json(removeNullResults(malhas));
     } 
     // Bad request
     else {

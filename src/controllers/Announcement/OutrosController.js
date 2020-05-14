@@ -29,7 +29,19 @@ module.exports = {
     // Index from announcement type
     if( req.body.adsTipo && !req.body.userId && !req.body.uf ) {
       const outros = await Outro.find({ adsTipo: req.body.adsTipo }).populate('userId').exec()
-      return res.json(outros)
+      
+      function removeNullResults(array) {
+        var result = array.filter(function(el) {
+          return el.userId === null;
+        });
+        for(var elemento of result) {
+          var index = array.indexOf(elemento);
+          array.splice(index, 1);
+        };
+        return array;
+      }
+      
+      return res.json(removeNullResults(outros));
     } 
     // Index from user Id
     else if ( !req.body.adsTipo && req.body.userId && !req.body.uf) {
@@ -37,23 +49,61 @@ module.exports = {
         path: 'userId',
         match: { _id: req.body.userId }
       }).exec()
-      return res.json(outros)
+      
+      function removeNullResults(array) {
+        var result = array.filter(function(el) {
+          return el.userId === null;
+        });
+        for(var elemento of result) {
+          var index = array.indexOf(elemento);
+          array.splice(index, 1);
+        };
+        return array;
+      }
+      
+      return res.json(removeNullResults(outros));
     } 
     // Index from announcement type and userId
     else if ( req.body.adsTipo && req.body.userId && !req.body.uf ) {
-      const outros = await Outro.find({ adsTipo: req.body.adsTipo }).populate({
-        path: 'userId',
-        match: { _id: req.body.userId }
-      }).exec()
-      return res.json(outros)
+      const outros = await Outro
+                            .find({ adsTipo: req.body.adsTipo }).
+                            populate({
+                              path: 'userId',
+                              match: { _id: req.body.userId }
+                            }).exec()
+      
+      function removeNullResults(array) {
+        var result = array.filter(function(el) {
+          return el.userId === null;
+        });
+        for(var elemento of result) {
+          var index = array.indexOf(elemento);
+          array.splice(index, 1);
+        };
+        return array;
+      }
+      
+      return res.json(removeNullResults(outros));
     }
     // Index from announcement type and uf    
     else if ( req.body.adsTipo && !req.body.userId && req.body.uf ) {
-      const outros = await Outro.find({ adsTipo: req.body.adsTipo }).populate({
+      const outros = await Outro.find({ adsTipo: req.body.adsTipo, userId: { $ne: null } }).populate({
         path: 'userId',
         match: { UF: req.body.uf }
       }).exec()
-      return res.json(outros)
+
+      function removeNullResults(array) {
+        var result = array.filter(function(el) {
+          return el.userId === null;
+        });
+        for(var elemento of result) {
+          var index = array.indexOf(elemento);
+          array.splice(index, 1);
+        };
+        return array;
+      }
+      
+      return res.json(removeNullResults(outros));
     } 
     // Bad request
     else {
