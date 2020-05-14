@@ -39,41 +39,32 @@ routes.delete('card:id', CardController.destroy )
   // Confecção
   routes.get('/confeccao/search/:search', SearchController.indexC)
   routes.get('/confeccao/search/type/:type/:search', SearchController.indexTypeC)
-
-  routes.get('/confeccao', ConfeccaoController.index)
-  routes.get('/confeccao/type/:adsTipo', ConfeccaoController.indexType)
-  routes.get('/confeccao/from/:userId', ConfeccaoController.indexFrom)
-  routes.get('/confeccao/type/from/:adsTipo/:userId', ConfeccaoController.indexTypeFrom)
   routes.get('/confeccao/:id', ConfeccaoController.detail)
   routes.post('/confeccao', ConfeccaoController.store)
   routes.put('/confeccao/:id', ConfeccaoController.update)
   routes.delete('/confeccao/:id', ConfeccaoController.destroy)
+  routes.get('/confeccao/find', ConfeccaoController.index)
+  routes.post('/confeccao/find', ConfeccaoController.indexType)
 
   // Malha
   routes.get('/malha/search/:search', SearchController.indexM)
   routes.get('/malha/search/type/:type/:search', SearchController.indexTypeM)
-
-  routes.get('/malha', MalhaController.index)
-  routes.get('/malha/type/:adsTipo', MalhaController.indexType)
-  routes.get('/malha/from/:userId', MalhaController.indexFrom)
-  routes.get('/malha/type/from/:adsTipo/:userId', MalhaController.indexTypeFrom)
   routes.get('/malha/:id', MalhaController.detail)
   routes.post('/malha', MalhaController.store)
   routes.put('/malha/:id', MalhaController.update)
   routes.delete('/malha/:id', MalhaController.destroy)
+  routes.get('/malha/find', MalhaController.index)
+  routes.post('/malha/find', MalhaController.indexType)
 
   // Outros
   routes.get('/outros/search/:search', SearchController.indexO)
   routes.get('/outros/search/type/:type/:search', SearchController.indexTypeO)
-
-  routes.get('/outros', OutrosController.index)
-  routes.get('/outros/type/:adsTipo', OutrosController.indexType)
-  routes.get('/outros/from/:userId', OutrosController.indexFrom)
-  routes.get('/outros/type/from/:adsTipo/:userId', OutrosController.indexTypeFrom)
   routes.get('/outros/:id', OutrosController.detail)
   routes.post('/outros', OutrosController.store)
   routes.put('/outros/:id', OutrosController.update)
   routes.delete('/outros/:id', OutrosController.destroy)
+  routes.get('/outros/find', OutrosController.index)
+  routes.post('/outros/find', OutrosController.indexType)
 
 // Organizations
   // Charity Organization
