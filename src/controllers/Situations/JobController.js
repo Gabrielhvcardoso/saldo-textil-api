@@ -2,7 +2,18 @@ const Job = require('../../models/Situations/Job')
 
 module.exports = {
   async index(req, res) {
-    if(req.body.uf) {
+    // Find by name and state
+    if(req.body.name && req.body.uf) {
+      const jobs = await Job.find({ title: { $regex: new RegExp(req.body.name), $options: 'i' }, states: { $regex: new RegExp(req.body.uf), $options: 'i' } }).populate('postedBy').exec()
+      return res.json(jobs)
+    }
+    // Find by name
+    else if(req.body.name && !req.body.uf) {
+      const jobs = await Job.find({ title: { $regex: new RegExp(req.body.name), $options: 'i' } }).populate('postedBy').exec()
+      return res.json(jobs)
+    }
+    // Find by state
+    else if(!req.body.name && req.body.uf) {
       const jobs = await Job.find({ states: { $regex: new RegExp(req.body.uf), $options: 'i' } }).populate('postedBy').exec()
       return res.json(jobs)  
     }
