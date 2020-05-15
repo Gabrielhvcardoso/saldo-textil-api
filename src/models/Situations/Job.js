@@ -24,7 +24,8 @@ const JobSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     defalt: Date.now()
-  }
+  },
+  states: [String]
 })
 
 module.exports = mongoose.model('Job', JobSchema)

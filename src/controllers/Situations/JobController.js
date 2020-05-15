@@ -2,10 +2,15 @@ const Job = require('../../models/Situations/Job')
 
 module.exports = {
   async index(req, res) {
-    const jobs = await Job.find()
-                          .populate('postedBy')
-                          .exec()
-    return res.json(jobs)
+    if(req.body.uf) {
+      const jobs = await Job.find({ states: { $regex: new RegExp(req.body.uf), $options: 'i' } }).populate('postedBy').exec()
+      return res.json(jobs)  
+    }
+    // Find All
+    else {
+      const jobs = await Job.find().populate('postedBy').exec()
+      return res.json(jobs)  
+    }
   },
   async detail(req, res) {
     const job = await Job.findById(req.params.id)

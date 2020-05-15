@@ -2,30 +2,24 @@ const Donation = require('../../models/Situations/Donation')
 
 module.exports = {
   async index(req, res) {
-    const donations = await Donation.find()
-                                    .populate('donateTo')
-                                    .exec()
-    return res.json(donations)
-  },
-  async indexFrom(req, res) {
-    const donations = await Donation.find({ donateBy: req.params.id })
-                                    .populate('donateBy')
-                                    .populate('donateTo')
-                                    .exec()
-    return res.json(donations)
-  },
-  async indexTo(req, res) {
-    const donations = await Donation.find({ donateTo: req.params.id })
-                                    .populate('donateBy')
-                                    .populate('donateTo')
-                                    .exec()
-    return res.json(donations)
+    // Find by uf
+    if(req.body.uf) {
+      const donations = await Donation.find({ status: true, states: req.body.uf }).populate('donateBy').exec()
+      return res.json(donations)  
+    }
+    // Find by who've donated
+    else if (req.body.donateBy) {
+      const donations = await Donation.find({ status: true, donateBy: req.body.donateBy })
+      return res.json(donations)
+    }
+    // Find all
+    else {
+      const donations = await Donation.find({ status: true }).populate('donateBy').exec()
+      return res.json(donations)  
+    }
   },
   async detail(req, res) {
-    const donation = await Donation.findById(req.params.id)
-                                   .populate('donateBy')
-                                  .populate('donateTo')
-                                   .exec()
+    const donation = await Donation.findById(req.params.id).populate('donateBy').exec()
     return res.json(donation)
   },
   async store(req, res) {

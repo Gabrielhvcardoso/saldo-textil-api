@@ -5,13 +5,13 @@ const DonationSchema = new mongoose.Schema({
   donateBy: {
     type: Schema.Types.ObjectId, ref: 'User'
   },
-  donateTo: {
-    type: Schema.Types.ObjectId, ref: 'CharityOrganization'
-  },
-  productId: String,
+  images: [String],
+  title: String,
+  description: String,
+  states: [String],
   status: {
     type: Boolean,
-    default: false
+    default: true
   },
   createdAt: {
     type: Date,

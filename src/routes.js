@@ -11,9 +11,6 @@ const ConfeccaoController = require('./controllers/Announcement/ConfeccaoControl
 const MalhaController = require('./controllers/Announcement/MalhaController')
 const OutrosController = require('./controllers/Announcement/OutrosController')
 
-// Organizations
-const CharityOrganizationController = require('./controllers/Organization/CharityOrganizationController')
-
 // Situations
 const AgentController = require('./controllers/Situations/AgentController')
 const JobController = require('./controllers/Situations/JobController')
@@ -66,36 +63,23 @@ routes.delete('card:id', CardController.destroy )
   routes.get('/outros/find', OutrosController.index)
   routes.post('/outros/find', OutrosController.indexType)
 
-// Organizations
-  // Charity Organization
-  routes.get('/search/organizations/charity/:search', SearchController.indexOC )
-  
-  routes.get('/organizations/charity', CharityOrganizationController.index )
-  routes.get('/organizations/charity/:id', CharityOrganizationController.detail )
-  routes.post('/organizations/charity', CharityOrganizationController.store )
-  routes.put('/organizations/charity/:id', CharityOrganizationController.update )
-  routes.delete('/organizations/charity/:id', CharityOrganizationController.destroy )
-
 // Situations
   // Agents
-  routes.get('/sit/agents', AgentController.index )
+  routes.post('/sit/agents/find', AgentController.index )
   routes.get('/sit/agents/:search', AgentController.searchProducts )
   routes.post('/sit/agents', AgentController.store )
   routes.put('/sit/agents/:id', AgentController.update )
   routes.delete('/sit/agents/:id', AgentController.destroy )
-  // Job
-  routes.get('/search/sit/jobs/:search', SearchController.indexJ )
 
-  routes.get('/sit/jobs', JobController.index )
+  // Job
+  routes.post('/sit/jobs/find', JobController.index )
   routes.get('/sit/jobs/:id', JobController.detail )
   routes.post('/sit/jobs', JobController.store )
   routes.put('/sit/jobs/:id', JobController.update )
   routes.delete('/sit/jobs/:id', JobController.destroy )
 
   // Donation
-  routes.get('/sit/donation', DonationController.index )
-  routes.get('/sit/donation/from/:id', DonationController.indexFrom )
-  routes.get('/sit/donation/to/:id', DonationController.indexTo )
+  routes.post('/sit/donation/find', DonationController.index )
   routes.get('/sit/donation/:id', DonationController.detail )
   routes.post('/sit/donation', DonationController.store )
   routes.put('/sit/donation/:id', DonationController.update )

@@ -4,8 +4,6 @@ const Confeccao = require('../models/Announcement/Confeccao')
 const Malha = require('../models/Announcement/Malha')
 const Outro = require('../models/Announcement/Outros')
 
-const Charity = require('../models/Organizations/CharityOrganization')
-
 const Job = require('../models/Situations/Job')
 
 module.exports = {
