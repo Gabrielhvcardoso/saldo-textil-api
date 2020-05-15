@@ -26,8 +26,25 @@ module.exports = {
     return res.send()
   },
   async indexType(req, res) {
-    // Index from announcement type
-    if( req.body.adsTipo && !req.body.userId && !req.body.uf ) {
+    // Index from ADS and NAME
+    if( req.body.adsTipo && !req.body.userId && !req.body.uf && req.body.name ) {
+      const malhas = await Malha.find({ titulo: { $regex: new RegExp(req.body.name), $options: 'i' } , adsTipo: req.body.adsTipo }).populate('userId').exec()
+      
+      function removeNullResults(array) {
+        var result = array.filter(function(el) {
+          return el.userId === null;
+        });
+        for(var elemento of result) {
+          var index = array.indexOf(elemento);
+          array.splice(index, 1);
+        };
+        return array;
+      }
+      
+      return res.json(removeNullResults(malhas));
+    } 
+    // Index from ADS
+    else if( req.body.adsTipo && !req.body.userId && !req.body.uf && !req.body.name ) {
       const malhas = await Malha.find({ adsTipo: req.body.adsTipo }).populate('userId').exec()
       
       function removeNullResults(array) {
@@ -43,8 +60,8 @@ module.exports = {
       
       return res.json(removeNullResults(malhas));
     } 
-    // Index from user Id
-    else if ( !req.body.adsTipo && req.body.userId && !req.body.uf) {
+    // Index from USERID
+    else if ( !req.body.adsTipo && req.body.userId && !req.body.uf && !req.body.name ) {
       const malhas = await Malha.find().populate({
         path: 'userId',
         match: { _id: req.body.userId }
@@ -63,8 +80,8 @@ module.exports = {
       
       return res.json(removeNullResults(malhas));
     } 
-    // Index from announcement type and userId
-    else if ( req.body.adsTipo && req.body.userId && !req.body.uf ) {
+    // Index from ADS and USERID
+    else if ( req.body.adsTipo && req.body.userId && !req.body.uf && !req.body.name ) {
       const malhas = await Malha.find({ adsTipo: req.body.adsTipo }).populate({
         path: 'userId',
         match: { _id: req.body.userId }
@@ -83,9 +100,29 @@ module.exports = {
       
       return res.json(removeNullResults(malhas));
     }
-    // Index from announcement type and uf    
-    else if ( req.body.adsTipo && !req.body.userId && req.body.uf ) {
+    // Index from ADS and UF    
+    else if ( req.body.adsTipo && !req.body.userId && req.body.uf && !req.body.name ) {
       const malhas = await Malha.find({ adsTipo: req.body.adsTipo, }).populate({
+        path: 'userId',
+        match: { UF: req.body.uf }
+      }).exec()
+
+      function removeNullResults(array) {
+        var result = array.filter(function(el) {
+          return el.userId === null;
+        });
+        for(var elemento of result) {
+          var index = array.indexOf(elemento);
+          array.splice(index, 1);
+        };
+        return array;
+      }
+      
+      return res.json(removeNullResults(malhas));
+    }
+    // Index from ADS and UF and NAME
+    else if ( req.body.adsTipo && !req.body.userId && req.body.uf && req.body.name ) {
+      const malhas = await Malha.find({ titulo: { $regex: new RegExp(req.body.name), $options: 'i' } , adsTipo: req.body.adsTipo, }).populate({
         path: 'userId',
         match: { UF: req.body.uf }
       }).exec()

@@ -26,8 +26,25 @@ module.exports = {
     return res.send()
   },
   async indexType(req, res) {
-    // Index from announcement type
-    if( req.body.adsTipo && !req.body.userId && !req.body.uf ) {
+    // Index from ADS and NAME
+    if( req.body.adsTipo && !req.body.userId && !req.body.uf && req.body.name ) {
+      const outros = await Outro.find({ titulo: { $regex: new RegExp(req.body.name), $options: 'i' } , adsTipo: req.body.adsTipo }).populate('userId').exec()
+      
+      function removeNullResults(array) {
+        var result = array.filter(function(el) {
+          return el.userId === null;
+        });
+        for(var elemento of result) {
+          var index = array.indexOf(elemento);
+          array.splice(index, 1);
+        };
+        return array;
+      }
+      
+      return res.json(removeNullResults(outros));
+    } 
+    // Index from ADS
+    if( req.body.adsTipo && !req.body.userId && !req.body.uf && !req.body.name ) {
       const outros = await Outro.find({ adsTipo: req.body.adsTipo }).populate('userId').exec()
       
       function removeNullResults(array) {
@@ -44,7 +61,7 @@ module.exports = {
       return res.json(removeNullResults(outros));
     } 
     // Index from user Id
-    else if ( !req.body.adsTipo && req.body.userId && !req.body.uf) {
+    else if ( !req.body.adsTipo && req.body.userId && !req.body.uf && !req.body.name ) {
       const outros = await Outro.find().populate({
         path: 'userId',
         match: { _id: req.body.userId }
@@ -63,8 +80,8 @@ module.exports = {
       
       return res.json(removeNullResults(outros));
     } 
-    // Index from announcement type and userId
-    else if ( req.body.adsTipo && req.body.userId && !req.body.uf ) {
+    // Index from ADS and userId
+    else if ( req.body.adsTipo && req.body.userId && !req.body.uf && !req.body.name ) {
       const outros = await Outro
                             .find({ adsTipo: req.body.adsTipo }).
                             populate({
@@ -85,9 +102,29 @@ module.exports = {
       
       return res.json(removeNullResults(outros));
     }
-    // Index from announcement type and uf    
-    else if ( req.body.adsTipo && !req.body.userId && req.body.uf ) {
+    // Index from ADS and uf    
+    else if ( req.body.adsTipo && !req.body.userId && req.body.uf && !req.body.name ) {
       const outros = await Outro.find({ adsTipo: req.body.adsTipo, userId: { $ne: null } }).populate({
+        path: 'userId',
+        match: { UF: req.body.uf }
+      }).exec()
+
+      function removeNullResults(array) {
+        var result = array.filter(function(el) {
+          return el.userId === null;
+        });
+        for(var elemento of result) {
+          var index = array.indexOf(elemento);
+          array.splice(index, 1);
+        };
+        return array;
+      }
+      
+      return res.json(removeNullResults(outros));
+    } 
+    // Index from ADS and uf and NAME    
+    else if ( req.body.adsTipo && !req.body.userId && req.body.uf && req.body.name ) {
+      const outros = await Outro.find({ titulo: { $regex: new RegExp(req.body.name), $options: 'i' } , adsTipo: req.body.adsTipo, userId: { $ne: null } }).populate({
         path: 'userId',
         match: { UF: req.body.uf }
       }).exec()
